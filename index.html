@@ -286,11 +286,17 @@
 </footer>
 
 <script>
-  const RATE_URL = "rate.js";
   const LOCAL = "AED";
+  // При MARKUP > 0 наценка идёт в пользу сервиса: клиент получает меньше и платит больше рыночного курса.
+  const MARKUP = 0;
+  // Публичные API с CORS, опрашиваются по порядку до первого успешного ответа.
+  const SOURCES = [
+    { url: "https://api.coinbase.com/v2/exchange-rates?currency=USD", parse: (j) => ({ rates: j.data.rates, time: Date.now() }) },
+    { url: "https://open.er-api.com/v6/latest/USD", parse: (j) => ({ rates: j.rates, time: j.time_last_update_unix * 1000 }) },
+  ];
   const $ = (id) => document.getElementById(id);
 
-  // Направления обмена: key — поле в rate.js, amount — сумма по умолчанию.
+  // Направления обмена: key — поле котировки, amount — сумма по умолчанию.
   const DIRS = {
     "rub-local": { from: "RUB", to: LOCAL, key: "rubToLocal", amount: 1000000, calc: (a, r) => a / r },
     "usdt-local": { from: "USDT", to: LOCAL, key: "usdtToLocal", amount: 10000, calc: (a, r) => a * r },
@@ -388,20 +394,36 @@
     return new URLSearchParams(location.search).get("lang") || saved || (navigator.language.startsWith("ru") ? "ru" : "en");
   }
 
-  function fetchRate() {
-    return new Promise((resolve, reject) => {
-      const s = document.createElement("script");
-      s.src = RATE_URL + "?t=" + Date.now();
-      s.onload = () => { s.remove(); window.RATE?.[LOCAL] ? resolve(window.RATE) : reject(new Error("RATE missing")); };
-      s.onerror = () => { s.remove(); reject(new Error("rate.js not loaded")); };
-      document.head.appendChild(s);
-    });
+  async function fetchUsdRates() {
+    for (const src of SOURCES) {
+      try {
+        const res = await fetch(src.url, { cache: "no-store" });
+        if (!res.ok) continue;
+        const { rates, time } = src.parse(await res.json());
+        const usdLocal = Number(rates[LOCAL]);
+        const usdRub = Number(rates.RUB);
+        if (usdLocal > 0 && usdRub > 0) return { usdLocal, usdRub, time };
+      } catch (e) {}
+    }
+    throw new Error("No rate source available");
+  }
+
+  const round = (n) => +n.toFixed(4);
+
+  function withMarkup(usdLocal, usdRub) {
+    const rubPerLocal = usdRub / usdLocal;
+    return {
+      usdtToLocal: round(usdLocal * (1 - MARKUP)),
+      localToUsdt: round(usdLocal * (1 + MARKUP)),
+      rubToLocal: round(rubPerLocal * (1 + MARKUP)),
+      localToRub: round(rubPerLocal * (1 - MARKUP)),
+    };
   }
 
   async function loadRates() {
     try {
-      const json = await fetchRate();
-      quote = { ...json[LOCAL], updatedAt: json.updatedAt };
+      const { usdLocal, usdRub, time } = await fetchUsdRates();
+      quote = { ...withMarkup(usdLocal, usdRub), updatedAt: time };
       status = "ok";
     } catch (e) {
       if (!quote) status = "error";
