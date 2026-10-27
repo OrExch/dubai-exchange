@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurum Dubai — обмен рублей и USDT на дирхамы в Дубае</title>
+<meta name="description" content="Приватный обмен рублей и USDT на дирхамы ОАЭ в Дубае. Индивидуальный курс для крупных сумм, наличные с доставкой, переводы на счета в ОАЭ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0b09;
+    --bg-2: #14120e;
+    --line: rgba(212, 175, 105, .2);
+    --gold: #d4af69;
+    --gold-light: #f1d9a4;
+    --text: #efe9dd;
+    --muted: #9a9384;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Montserrat", sans-serif; font-weight: 400; background: var(--bg); color: var(--text); line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(1180px, 100% - 48px); margin: 0 auto; }
+  .gold-text { background: linear-gradient(120deg, var(--gold-light), var(--gold) 45%, #a5803f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  header { position: absolute; inset: 0 0 auto; z-index: 5; }
+  .nav { display: flex; justify-content: space-between; align-items: center; height: 92px; border-bottom: 1px solid var(--line); gap: 16px; }
+  .logo { font-family: "Cormorant Garamond", serif; font-size: 26px; font-weight: 700; letter-spacing: .18em; }
+  .logo span { color: var(--gold); }
+  .logo small { font-family: "Montserrat", sans-serif; font-size: 10px; letter-spacing: .4em; color: var(--muted); margin-left: 10px; font-weight: 500; }
+  .nav-links { display: flex; gap: 36px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .lang { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; letter-spacing: .2em; }
+  .lang button { border: 0; background: none; color: var(--muted); font: inherit; letter-spacing: inherit; padding: 6px 4px; cursor: pointer; border-bottom: 1px solid transparent; }
+  .lang button.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .lang span { color: var(--line); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    font: 500 12px "Montserrat", sans-serif; letter-spacing: .2em; text-transform: uppercase;
+    padding: 18px 34px; border: 1px solid var(--gold); transition: .3s; cursor: pointer;
+  }
+  .btn-gold { background: linear-gradient(120deg, var(--gold-light), var(--gold)); color: #1a1408; border-color: transparent; }
+  .btn-gold:hover { filter: brightness(1.08); box-shadow: 0 12px 40px -12px rgba(212,175,105,.6); }
+  .btn-outline { color: var(--gold); background: transparent; }
+  .btn-outline:hover { background: rgba(212,175,105,.1); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; padding: 140px 0 80px;
+    background:
+      radial-gradient(circle at 78% 45%, rgba(212,175,105,.16), transparent 40%),
+      radial-gradient(circle at 10% 100%, rgba(212,175,105,.06), transparent 40%);
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+  .eyebrow { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 16px; }
+  .eyebrow::before { content: ""; width: 48px; height: 1px; background: var(--gold); }
+  h1 { font-family: "Cormorant Garamond", serif; font-weight: 500; font-size: clamp(46px, 6.6vw, 92px); line-height: .98; margin: 28px 0; letter-spacing: -.01em; }
+  h1 i { font-style: italic; }
+  .hero p { color: var(--muted); font-size: 17px; font-weight: 300; max-width: 500px; }
+  .hero-actions { display: flex; gap: 16px; margin-top: 44px; flex-wrap: wrap; }
+
+  .emblem { position: relative; aspect-ratio: 1; max-width: 440px; width: 100%; margin-left: auto; }
+  .ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--line); }
+  .ring:nth-child(2) { inset: 9%; border-color: rgba(212,175,105,.35); animation: spin 60s linear infinite; border-style: dashed; }
+  .ring:nth-child(3) { inset: 18%; border-color: rgba(212,175,105,.5); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .coin {
+    position: absolute; inset: 26%; border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #fff1cc, var(--gold) 35%, #8a6a30 75%, #4d3a17);
+    box-shadow: 0 30px 80px -20px rgba(212,175,105,.55), inset 0 -10px 30px rgba(0,0,0,.35), inset 0 6px 14px rgba(255,255,255,.4);
+    display: grid; place-items: center;
+  }
+  .coin span { font-family: "Cormorant Garamond", serif; font-size: clamp(40px, 6vw, 72px); font-weight: 700; letter-spacing: .04em; color: #3b2c10; text-shadow: 0 2px 0 rgba(255,240,200,.5); }
+  .orbit-label {
+    position: absolute; padding: 10px 16px; background: rgba(12,11,9,.85); border: 1px solid var(--line);
+    font-size: 12px; letter-spacing: .12em; backdrop-filter: blur(6px);
+  }
+  .orbit-label b { color: var(--gold); font-weight: 600; }
+  .ol-1 { top: 8%; left: -6%; }
+  .ol-2 { bottom: 10%; right: -4%; }
+
+  /* Sections */
+  section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 64px; }
+  h2 { font-family: "Cormorant Garamond", serif; font-weight: 500; font-size: clamp(38px, 5vw, 64px); line-height: 1.05; margin-top: 18px; }
+  .sec-head p { color: var(--muted); font-weight: 300; }
+
+  /* Rates + calc */
+  .exchange { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); }
+  .rates-table { padding: 48px; border-right: 1px solid var(--line); }
+  .rates-table h3, .calc h3 { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 30px; }
+  .r-line { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .r-line:first-of-type { border-top: 1px solid var(--line); }
+  .r-line small { display: block; color: var(--muted); font-size: 13px; font-weight: 300; }
+  .r-line .pair { font-size: 16px; font-weight: 500; letter-spacing: .06em; }
+  .r-val { font-family: "Cormorant Garamond", serif; font-size: 40px; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
+  .r-val.na { font-size: 22px; color: var(--muted); font-style: italic; }
+  .r-status { margin-top: 24px; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .r-status i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .r-status.on i { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+
+  .calc { padding: 48px; background: var(--bg-2); }
+  .calc label { display: block; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .calc select, .calc input {
+    width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--line);
+    color: var(--text); padding: 10px 0 14px; outline: none; margin-bottom: 30px;
+    font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 600;
+    transition: border-color .3s; border-radius: 0;
+  }
+  .calc select { cursor: pointer; appearance: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23d4af69' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 4px center; }
+  .calc select option { background: var(--bg-2); font-size: 18px; }
+  .calc input:focus, .calc select:focus { border-color: var(--gold); }
+  .calc input::-webkit-outer-spin-button, .calc input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .calc input[type=number] { -moz-appearance: textfield; }
+  .calc-result { padding: 26px 0; border-top: 1px solid var(--line); margin-bottom: 26px; }
+  .calc-result small { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+  .calc-result output { display: block; font-family: "Cormorant Garamond", serif; font-size: 52px; font-weight: 600; line-height: 1.2; }
+  .calc-result p { font-size: 13px; color: var(--muted); font-weight: 300; }
+  .calc .btn { width: 100%; }
+
+  /* Services */
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .service { padding: 44px 36px; border: 1px solid var(--line); margin: 0 -1px -1px 0; transition: background .4s; }
+  .service:hover { background: linear-gradient(180deg, rgba(212,175,105,.08), transparent); }
+  .service .num { font-family: "Cormorant Garamond", serif; font-size: 20px; color: var(--gold); font-style: italic; }
+  .service h3 { font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 600; margin: 40px 0 12px; line-height: 1.15; }
+  .service p { color: var(--muted); font-weight: 300; font-size: 15px; }
+
+  /* Quote */
+  .quote { text-align: center; padding: 120px 0; }
+  .quote blockquote { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: clamp(30px, 4vw, 50px); line-height: 1.25; max-width: 900px; margin: 0 auto; }
+  .quote cite { display: block; margin-top: 30px; font-style: normal; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0; }
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--muted); }
+
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .hero-grid, .sec-head, .exchange { grid-template-columns: 1fr; }
+    .emblem { max-width: 320px; margin: 0 auto; }
+    .rates-table { border-right: 0; border-bottom: 1px solid var(--line); }
+    .rates-table, .calc { padding: 32px 24px; }
+    .services { grid-template-columns: 1fr; }
+    section { padding: 72px 0; }
+    .ol-1 { left: 0; }
+    .ol-2 { right: 0; }
+  }
+  @media (max-width: 520px) {
+    .nav-right .btn, .logo small { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#">AUR<span>U</span>M<small>DUBAI</small></a>
+    <nav class="nav-links">
+      <a href="#exchange" data-i18n="nav.rate">Курс</a>
+      <a href="#services" data-i18n="nav.services">Услуги</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Язык / Language">
+        <button type="button" data-lang="ru">RU</button><span>/</span><button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="btn btn-outline" href="https://t.me/your_exchange_bot" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow" data-i18n="hero.eyebrow">Private exchange · Дубай</div>
+        <h1 data-i18n="hero.title">Рубли и USDT <br><i class="gold-text">в дирхамы</i></h1>
+        <p data-i18n="hero.text">Конфиденциальный обмен для частных клиентов и бизнеса в ОАЭ. Наличные дирхамы с доставкой, переводы на счета в ОАЭ и индивидуальный курс для крупных сумм.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="https://t.me/your_exchange_bot" target="_blank" rel="noopener" data-i18n="hero.cta">Связаться с менеджером</a>
+          <a class="btn btn-outline" href="#exchange" data-i18n="hero.rate">Узнать курс</a>
+        </div>
+      </div>
+      <div class="emblem" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="coin"><span>AED</span></div>
+        <div class="orbit-label ol-1">USDT → AED <b id="hero-usdt">—</b></div>
+        <div class="orbit-label ol-2">RUB → AED <b id="hero-rub">—</b></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="exchange">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow" data-i18n="ex.eyebrow">Котировки</div>
+          <h2 data-i18n="ex.title">Курс и <i class="gold-text">расчёт</i></h2>
+        </div>
+        <p data-i18n="ex.text">Курс обновляется автоматически. Для сумм от 1 000 000 ₽ или 10 000 USDT предлагаем индивидуальный курс — уточняйте у персонального менеджера.</p>
+      </div>
+
+      <div class="exchange">
+        <div class="rates-table">
+          <h3 data-i18n="ex.rates">Курс обмена</h3>
+          <div class="r-line">
+            <div><span class="pair">USDT → AED</span><small data-i18n="ex.perUsdt">AED за 1 USDT</small></div>
+            <div class="r-val na" id="r-usdtToLocal">—</div>
+          </div>
+          <div class="r-line">
+            <div><span class="pair">AED → USDT</span><small data-i18n="ex.perUsdt">AED за 1 USDT</small></div>
+            <div class="r-val na" id="r-localToUsdt">—</div>
+          </div>
+          <div class="r-line">
+            <div><span class="pair">RUB → AED</span><small data-i18n="ex.perLocal">₽ за 1 AED</small></div>
+            <div class="r-val na" id="r-rubToLocal">—</div>
+          </div>
+          <div class="r-line">
+            <div><span class="pair">AED → RUB</span><small data-i18n="ex.perLocal">₽ за 1 AED</small></div>
+            <div class="r-val na" id="r-localToRub">—</div>
+          </div>
+          <div class="r-status" id="status"><i></i><span id="status-text">Получаем котировки…</span></div>
+        </div>
+
+        <div class="calc">
+          <h3 data-i18n="calc.title">Калькулятор</h3>
+          <label for="dir" data-i18n="calc.dir">Направление</label>
+          <select id="dir">
+            <option value="rub-local">RUB → AED</option>
+            <option value="usdt-local">USDT → AED</option>
+            <option value="local-rub">AED → RUB</option>
+            <option value="local-usdt">AED → USDT</option>
+          </select>
+          <label for="amount"><span data-i18n="calc.amount">Сумма</span>, <span id="cur-from">RUB</span></label>
+          <input id="amount" type="number" min="0" step="any" value="1000000" inputmode="decimal">
+          <div class="calc-result">
+            <small data-i18n="calc.get">Ориентировочно получите</small>
+            <output id="result">—</output>
+            <p id="calc-note">Без фиксации курса</p>
+          </div>
+          <a class="btn btn-gold" href="https://t.me/your_exchange_bot" target="_blank" rel="noopener" data-i18n="calc.cta">Запросить индивидуальный курс</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow" data-i18n="srv.eyebrow">Услуги</div>
+          <h2 data-i18n="srv.title">Сервис <i class="gold-text">без компромиссов</i></h2>
+        </div>
+        <p data-i18n="srv.text">Каждая сделка сопровождается персональным менеджером — от согласования курса до получения средств.</p>
+      </div>
+      <div class="services">
+        <div class="service"><span class="num">I.</span><h3 data-i18n="s1.title">Наличные дирхамы</h3><p data-i18n="s1.text">Доставка в Dubai Marina, Downtown, JBR, Business Bay, Palm Jumeirah и другие районы.</p></div>
+        <div class="service"><span class="num">II.</span><h3 data-i18n="s2.title">Крупные суммы</h3><p data-i18n="s2.text">Покупка недвижимости и бизнес-сделки — по предварительному согласованию и индивидуальному курсу.</p></div>
+        <div class="service"><span class="num">III.</span><h3 data-i18n="s3.title">Переводы на счета в ОАЭ</h3><p data-i18n="s3.text">Оплата застройщикам, арендодателям и компаниям напрямую в дирхамах.</p></div>
+        <div class="service"><span class="num">IV.</span><h3 data-i18n="s4.title">Рубли с российских карт</h3><p data-i18n="s4.text">Принимаем рублёвые переводы с карт и расчётных счетов.</p></div>
+        <div class="service"><span class="num">V.</span><h3 data-i18n="s5.title">USDT</h3><p data-i18n="s5.text">Принимаем и выдаём USDT в сетях TRC-20 и ERC-20.</p></div>
+        <div class="service"><span class="num">VI.</span><h3 data-i18n="s6.title">Обратный обмен</h3><p data-i18n="s6.text">Дирхамы в рубли на российскую карту или в USDT на ваш кошелёк.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote">
+    <div class="wrap">
+      <blockquote data-i18n="quote.text">«Мы ценим ваше время и конфиденциальность — поэтому условия каждой сделки фиксируются заранее и не меняются в процессе.»</blockquote>
+      <cite data-i18n="quote.cite">— Команда Aurum</cite>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year"></span> Aurum Dubai</span>
+    <span data-i18n="footer.disclaimer">Котировки носят информационный характер и не являются публичной офертой.</span>
+  </div>
+</footer>
+
+<script>
+  const RATE_URL = "rate.js";
+  const LOCAL = "AED";
+  const $ = (id) => document.getElementById(id);
+
+  // Направления обмена: key — поле в rate.js, amount — сумма по умолчанию.
+  const DIRS = {
+    "rub-local": { from: "RUB", to: LOCAL, key: "rubToLocal", amount: 1000000, calc: (a, r) => a / r },
+    "usdt-local": { from: "USDT", to: LOCAL, key: "usdtToLocal", amount: 10000, calc: (a, r) => a * r },
+    "local-rub": { from: LOCAL, to: "RUB", key: "localToRub", amount: 30000, calc: (a, r) => a * r },
+    "local-usdt": { from: LOCAL, to: "USDT", key: "localToUsdt", amount: 30000, calc: (a, r) => a / r },
+  };
+  const DIGITS = { usdtToLocal: 3, localToUsdt: 3, rubToLocal: 2, localToRub: 2 };
+
+  // Русские тексты берутся из разметки, здесь — только английские и динамические строки.
+  const I18N = {
+    ru: {
+      "meta.title": document.title,
+      "meta.desc": document.querySelector('meta[name="description"]').content,
+      "status.loading": "Получаем котировки…",
+      "status.ok": "Обновлено в ",
+      "status.error": "Котировка недоступна — уточните курс у менеджера",
+      "rate.na": "уточняется",
+      "calc.note": "Без фиксации курса",
+      "calc.rate": "По курсу {rate}, без фиксации",
+    },
+    en: {
+      "meta.title": "Aurum Dubai — exchange rubles and USDT for dirhams in Dubai",
+      "meta.desc": "Private exchange of rubles and USDT for UAE dirhams in Dubai. Personal rate for large amounts, cash delivery, transfers to UAE bank accounts.",
+      "nav.rate": "Rate",
+      "nav.services": "Services",
+      "hero.eyebrow": "Private exchange · Dubai",
+      "hero.title": "Rubles and USDT <br><i class=\"gold-text\">to dirhams</i>",
+      "hero.text": "Confidential exchange for private clients and businesses in the UAE. Cash dirhams delivered, transfers to UAE bank accounts and a personal rate for large amounts.",
+      "hero.cta": "Contact a manager",
+      "hero.rate": "See the rate",
+      "ex.eyebrow": "Quotes",
+      "ex.title": "Rate and <i class=\"gold-text\">calculation</i>",
+      "ex.text": "The rate updates automatically. For amounts from 1,000,000 ₽ or 10,000 USDT we offer a personal rate — ask your personal manager.",
+      "ex.rates": "Exchange rate",
+      "ex.perUsdt": "AED per 1 USDT",
+      "ex.perLocal": "₽ per 1 AED",
+      "calc.title": "Calculator",
+      "calc.dir": "Direction",
+      "calc.amount": "Amount",
+      "calc.get": "You get (approx.)",
+      "calc.cta": "Request a personal rate",
+      "srv.eyebrow": "Services",
+      "srv.title": "Service <i class=\"gold-text\">without compromise</i>",
+      "srv.text": "Every deal is handled by a personal manager — from agreeing the rate to receiving the funds.",
+      "s1.title": "Cash dirhams",
+      "s1.text": "Delivery to Dubai Marina, Downtown, JBR, Business Bay, Palm Jumeirah and other areas.",
+      "s2.title": "Large amounts",
+      "s2.text": "Property purchases and business deals — by prior arrangement at a personal rate.",
+      "s3.title": "Transfers to UAE accounts",
+      "s3.text": "Pay developers, landlords and companies directly in dirhams.",
+      "s4.title": "Rubles from Russian cards",
+      "s4.text": "We accept ruble transfers from cards and business accounts.",
+      "s5.title": "USDT",
+      "s5.text": "We accept and pay out USDT on TRC-20 and ERC-20.",
+      "s6.title": "Reverse exchange",
+      "s6.text": "Dirhams to rubles on a Russian card or to USDT in your wallet.",
+      "quote.text": "“We value your time and privacy — that's why the terms of every deal are fixed in advance and never change along the way.”",
+      "quote.cite": "— The Aurum team",
+      "footer.disclaimer": "Rates are for information only and do not constitute a public offer.",
+      "status.loading": "Fetching quotes…",
+      "status.ok": "Updated at ",
+      "status.error": "Rate unavailable — please ask your manager",
+      "rate.na": "on request",
+      "calc.note": "Rate not locked",
+      "calc.rate": "At {rate}, rate not locked",
+    },
+  };
+  document.querySelectorAll("[data-i18n]").forEach((el) => { I18N.ru[el.dataset.i18n] ??= el.innerHTML; });
+
+  let lang = "ru";
+  let quote = null;
+  let status = "loading";
+
+  const t = (key) => I18N[lang][key] ?? I18N.ru[key];
+  const locale = () => (lang === "en" ? "en-US" : "ru-RU");
+  const fmt = (n, d = 2) => new Intl.NumberFormat(locale(), { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
+  const rateText = (key) => key.includes("Usdt")
+    ? `1 USDT = ${fmt(quote[key], DIGITS[key])} AED`
+    : `1 AED = ${fmt(quote[key], DIGITS[key])} ₽`;
+
+  function setLang(next) {
+    lang = I18N[next] ? next : "ru";
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+    document.documentElement.lang = lang;
+    document.title = t("meta.title");
+    document.querySelector('meta[name="description"]').content = t("meta.desc");
+    document.querySelectorAll("[data-i18n]").forEach((el) => { el.innerHTML = t(el.dataset.i18n); });
+    document.querySelectorAll("[data-lang]").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    render();
+  }
+
+  function detectLang() {
+    let saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    return new URLSearchParams(location.search).get("lang") || saved || (navigator.language.startsWith("ru") ? "ru" : "en");
+  }
+
+  function fetchRate() {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = RATE_URL + "?t=" + Date.now();
+      s.onload = () => { s.remove(); window.RATE?.[LOCAL] ? resolve(window.RATE) : reject(new Error("RATE missing")); };
+      s.onerror = () => { s.remove(); reject(new Error("rate.js not loaded")); };
+      document.head.appendChild(s);
+    });
+  }
+
+  async function loadRates() {
+    try {
+      const json = await fetchRate();
+      quote = { ...json[LOCAL], updatedAt: json.updatedAt };
+      status = "ok";
+    } catch (e) {
+      if (!quote) status = "error";
+    }
+    render();
+  }
+
+  function render() {
+    const ok = status === "ok";
+    for (const key of Object.keys(DIGITS)) {
+      const el = $("r-" + key);
+      el.textContent = ok ? fmt(quote[key], DIGITS[key]) : status === "error" ? t("rate.na") : "—";
+      el.classList.toggle("na", !ok);
+    }
+    $("hero-usdt").textContent = ok ? fmt(quote.usdtToLocal, DIGITS.usdtToLocal) : "—";
+    $("hero-rub").textContent = ok ? fmt(quote.rubToLocal, DIGITS.rubToLocal) + " ₽" : "—";
+    $("status").classList.toggle("on", ok);
+    $("status-text").textContent = ok
+      ? t("status.ok") + new Date(quote.updatedAt).toLocaleTimeString(locale())
+      : t(status === "error" ? "status.error" : "status.loading");
+    calc();
+  }
+
+  function calc() {
+    const d = DIRS[$("dir").value];
+    $("cur-from").textContent = d.from;
+    if (!quote) {
+      $("result").textContent = "—";
+      $("calc-note").textContent = t("calc.note");
+      return;
+    }
+    const amount = parseFloat($("amount").value) || 0;
+    $("result").textContent = fmt(d.calc(amount, quote[d.key])) + " " + d.to;
+    $("calc-note").textContent = t("calc.rate").replace("{rate}", rateText(d.key));
+  }
+
+  $("dir").addEventListener("change", () => {
+    $("amount").value = DIRS[$("dir").value].amount;
+    calc();
+  });
+  document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+  $("amount").addEventListener("input", calc);
+  $("year").textContent = new Date().getFullYear();
+
+  setLang(detectLang());
+  loadRates();
+  setInterval(loadRates, 60000);
+</script>
+</body>
+</html>
