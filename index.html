@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aurum Dubai — обмен рублей и USDT на дирхамы в Дубае</title>
-<meta name="description" content="Приватный обмен рублей и USDT на дирхамы ОАЭ в Дубае. Индивидуальный курс для крупных сумм, наличные с доставкой, переводы на счета в ОАЭ.">
+<title>Aurum Dubai — обмен USDT на дирхамы в Дубае</title>
+<meta name="description" content="Приватный обмен USDT на дирхамы ОАЭ в Дубае. Индивидуальный курс для крупных сумм, наличные с доставкой, переводы на счета в ОАЭ.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -177,7 +177,7 @@
     <div class="wrap hero-grid">
       <div>
         <div class="eyebrow" data-i18n="hero.eyebrow">Private exchange · Дубай</div>
-        <h1 data-i18n="hero.title">Рубли и USDT <br><i class="gold-text">в дирхамы</i></h1>
+        <h1 data-i18n="hero.title">USDT <br><i class="gold-text">в дирхамы</i></h1>
         <p data-i18n="hero.text">Конфиденциальный обмен для частных клиентов и бизнеса в ОАЭ. Наличные дирхамы с доставкой, переводы на счета в ОАЭ и индивидуальный курс для крупных сумм.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="https://t.me/DubaiObmenBot" target="_blank" rel="noopener" data-i18n="hero.cta">Связаться с менеджером</a>
@@ -190,7 +190,7 @@
         <div class="ring"></div>
         <div class="coin"><span>AED</span></div>
         <div class="orbit-label ol-1">USDT → AED <b id="hero-usdt">—</b></div>
-        <div class="orbit-label ol-2">RUB → AED <b id="hero-rub">—</b></div>
+        <div class="orbit-label ol-2">AED → USDT <b id="hero-aed">—</b></div>
       </div>
     </div>
   </div>
@@ -202,7 +202,7 @@
           <div class="eyebrow" data-i18n="ex.eyebrow">Котировки</div>
           <h2 data-i18n="ex.title">Курс и <i class="gold-text">расчёт</i></h2>
         </div>
-        <p data-i18n="ex.text">Курс обновляется автоматически. Для сумм от 1 000 000 ₽ или 10 000 USDT предлагаем индивидуальный курс — уточняйте у персонального менеджера.</p>
+        <p data-i18n="ex.text">Курс обновляется автоматически. Для сумм от 10 000 USDT предлагаем индивидуальный курс — уточняйте у персонального менеджера.</p>
       </div>
 
       <div class="exchange">
@@ -216,14 +216,6 @@
             <div><span class="pair">AED → USDT</span><small data-i18n="ex.perUsdt">AED за 1 USDT</small></div>
             <div class="r-val na" id="r-localToUsdt">—</div>
           </div>
-          <div class="r-line">
-            <div><span class="pair">RUB → AED</span><small data-i18n="ex.perLocal">₽ за 1 AED</small></div>
-            <div class="r-val na" id="r-rubToLocal">—</div>
-          </div>
-          <div class="r-line">
-            <div><span class="pair">AED → RUB</span><small data-i18n="ex.perLocal">₽ за 1 AED</small></div>
-            <div class="r-val na" id="r-localToRub">—</div>
-          </div>
           <div class="r-status" id="status"><i></i><span id="status-text">Получаем котировки…</span></div>
         </div>
 
@@ -231,13 +223,11 @@
           <h3 data-i18n="calc.title">Калькулятор</h3>
           <label for="dir" data-i18n="calc.dir">Направление</label>
           <select id="dir">
-            <option value="rub-local">RUB → AED</option>
             <option value="usdt-local">USDT → AED</option>
-            <option value="local-rub">AED → RUB</option>
             <option value="local-usdt">AED → USDT</option>
           </select>
-          <label for="amount"><span data-i18n="calc.amount">Сумма</span>, <span id="cur-from">RUB</span></label>
-          <input id="amount" type="number" min="0" step="any" value="1000000" inputmode="decimal">
+          <label for="amount"><span data-i18n="calc.amount">Сумма</span>, <span id="cur-from">USDT</span></label>
+          <input id="amount" type="number" min="0" step="any" value="10000" inputmode="decimal">
           <div class="calc-result">
             <small data-i18n="calc.get">Ориентировочно получите</small>
             <output id="result">—</output>
@@ -262,9 +252,8 @@
         <div class="service"><span class="num">I.</span><h3 data-i18n="s1.title">Наличные дирхамы</h3><p data-i18n="s1.text">Доставка в Dubai Marina, Downtown, JBR, Business Bay, Palm Jumeirah и другие районы.</p></div>
         <div class="service"><span class="num">II.</span><h3 data-i18n="s2.title">Крупные суммы</h3><p data-i18n="s2.text">Покупка недвижимости и бизнес-сделки — по предварительному согласованию и индивидуальному курсу.</p></div>
         <div class="service"><span class="num">III.</span><h3 data-i18n="s3.title">Переводы на счета в ОАЭ</h3><p data-i18n="s3.text">Оплата застройщикам, арендодателям и компаниям напрямую в дирхамах.</p></div>
-        <div class="service"><span class="num">IV.</span><h3 data-i18n="s4.title">Рубли с российских карт</h3><p data-i18n="s4.text">Принимаем рублёвые переводы с карт и расчётных счетов.</p></div>
-        <div class="service"><span class="num">V.</span><h3 data-i18n="s5.title">USDT</h3><p data-i18n="s5.text">Принимаем и выдаём USDT в сетях TRC-20 и ERC-20.</p></div>
-        <div class="service"><span class="num">VI.</span><h3 data-i18n="s6.title">Обратный обмен</h3><p data-i18n="s6.text">Дирхамы в рубли на российскую карту или в USDT на ваш кошелёк.</p></div>
+        <div class="service"><span class="num">IV.</span><h3 data-i18n="s5.title">USDT</h3><p data-i18n="s5.text">Принимаем и выдаём USDT в сетях TRC-20 и ERC-20.</p></div>
+        <div class="service"><span class="num">V.</span><h3 data-i18n="s6.title">Обратный обмен</h3><p data-i18n="s6.text">Дирхамы в USDT на ваш кошелёк.</p></div>
       </div>
     </div>
   </section>
@@ -298,12 +287,10 @@
 
   // Направления обмена: key — поле котировки, amount — сумма по умолчанию.
   const DIRS = {
-    "rub-local": { from: "RUB", to: LOCAL, key: "rubToLocal", amount: 1000000, calc: (a, r) => a / r },
     "usdt-local": { from: "USDT", to: LOCAL, key: "usdtToLocal", amount: 10000, calc: (a, r) => a * r },
-    "local-rub": { from: LOCAL, to: "RUB", key: "localToRub", amount: 30000, calc: (a, r) => a * r },
     "local-usdt": { from: LOCAL, to: "USDT", key: "localToUsdt", amount: 30000, calc: (a, r) => a / r },
   };
-  const DIGITS = { usdtToLocal: 3, localToUsdt: 3, rubToLocal: 2, localToRub: 2 };
+  const DIGITS = { usdtToLocal: 3, localToUsdt: 3 };
 
   // Русские тексты берутся из разметки, здесь — только английские и динамические строки.
   const I18N = {
@@ -318,21 +305,20 @@
       "calc.rate": "По курсу {rate}, без фиксации",
     },
     en: {
-      "meta.title": "Aurum Dubai — exchange rubles and USDT for dirhams in Dubai",
-      "meta.desc": "Private exchange of rubles and USDT for UAE dirhams in Dubai. Personal rate for large amounts, cash delivery, transfers to UAE bank accounts.",
+      "meta.title": "Aurum Dubai — exchange USDT for dirhams in Dubai",
+      "meta.desc": "Private exchange of USDT for UAE dirhams in Dubai. Personal rate for large amounts, cash delivery, transfers to UAE bank accounts.",
       "nav.rate": "Rate",
       "nav.services": "Services",
       "hero.eyebrow": "Private exchange · Dubai",
-      "hero.title": "Rubles and USDT <br><i class=\"gold-text\">to dirhams</i>",
+      "hero.title": "USDT <br><i class=\"gold-text\">to dirhams</i>",
       "hero.text": "Confidential exchange for private clients and businesses in the UAE. Cash dirhams delivered, transfers to UAE bank accounts and a personal rate for large amounts.",
       "hero.cta": "Contact a manager",
       "hero.rate": "See the rate",
       "ex.eyebrow": "Quotes",
       "ex.title": "Rate and <i class=\"gold-text\">calculation</i>",
-      "ex.text": "The rate updates automatically. For amounts from 1,000,000 ₽ or 10,000 USDT we offer a personal rate — ask your personal manager.",
+      "ex.text": "The rate updates automatically. For amounts from 10,000 USDT we offer a personal rate — ask your personal manager.",
       "ex.rates": "Exchange rate",
       "ex.perUsdt": "AED per 1 USDT",
-      "ex.perLocal": "₽ per 1 AED",
       "calc.title": "Calculator",
       "calc.dir": "Direction",
       "calc.amount": "Amount",
@@ -347,12 +333,10 @@
       "s2.text": "Property purchases and business deals — by prior arrangement at a personal rate.",
       "s3.title": "Transfers to UAE accounts",
       "s3.text": "Pay developers, landlords and companies directly in dirhams.",
-      "s4.title": "Rubles from Russian cards",
-      "s4.text": "We accept ruble transfers from cards and business accounts.",
       "s5.title": "USDT",
       "s5.text": "We accept and pay out USDT on TRC-20 and ERC-20.",
       "s6.title": "Reverse exchange",
-      "s6.text": "Dirhams to rubles on a Russian card or to USDT in your wallet.",
+      "s6.text": "Dirhams to USDT in your wallet.",
       "quote.text": "“We value your time and privacy — that's why the terms of every deal are fixed in advance and never change along the way.”",
       "quote.cite": "— The Aurum team",
       "footer.disclaimer": "Rates are for information only and do not constitute a public offer.",
@@ -373,9 +357,7 @@
   const t = (key) => I18N[lang][key] ?? I18N.ru[key];
   const locale = () => (lang === "en" ? "en-US" : "ru-RU");
   const fmt = (n, d = 2) => new Intl.NumberFormat(locale(), { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
-  const rateText = (key) => key.includes("Usdt")
-    ? `1 USDT = ${fmt(quote[key], DIGITS[key])} AED`
-    : `1 AED = ${fmt(quote[key], DIGITS[key])} ₽`;
+  const rateText = (key) => `1 USDT = ${fmt(quote[key], DIGITS[key])} AED`;
 
   function setLang(next) {
     lang = I18N[next] ? next : "ru";
@@ -401,8 +383,7 @@
         if (!res.ok) continue;
         const { rates, time } = src.parse(await res.json());
         const usdLocal = Number(rates[LOCAL]);
-        const usdRub = Number(rates.RUB);
-        if (usdLocal > 0 && usdRub > 0) return { usdLocal, usdRub, time };
+        if (usdLocal > 0) return { usdLocal, time };
       } catch (e) {}
     }
     throw new Error("No rate source available");
@@ -410,20 +391,17 @@
 
   const round = (n) => +n.toFixed(4);
 
-  function withMarkup(usdLocal, usdRub) {
-    const rubPerLocal = usdRub / usdLocal;
+  function withMarkup(usdLocal) {
     return {
       usdtToLocal: round(usdLocal * (1 - MARKUP)),
       localToUsdt: round(usdLocal * (1 + MARKUP)),
-      rubToLocal: round(rubPerLocal * (1 + MARKUP)),
-      localToRub: round(rubPerLocal * (1 - MARKUP)),
     };
   }
 
   async function loadRates() {
     try {
-      const { usdLocal, usdRub, time } = await fetchUsdRates();
-      quote = { ...withMarkup(usdLocal, usdRub), updatedAt: time };
+      const { usdLocal, time } = await fetchUsdRates();
+      quote = { ...withMarkup(usdLocal), updatedAt: time };
       status = "ok";
     } catch (e) {
       if (!quote) status = "error";
@@ -439,7 +417,7 @@
       el.classList.toggle("na", !ok);
     }
     $("hero-usdt").textContent = ok ? fmt(quote.usdtToLocal, DIGITS.usdtToLocal) : "—";
-    $("hero-rub").textContent = ok ? fmt(quote.rubToLocal, DIGITS.rubToLocal) + " ₽" : "—";
+    $("hero-aed").textContent = ok ? fmt(quote.localToUsdt, DIGITS.localToUsdt) : "—";
     $("status").classList.toggle("on", ok);
     $("status-text").textContent = ok
       ? t("status.ok") + new Date(quote.updatedAt).toLocaleTimeString(locale())
